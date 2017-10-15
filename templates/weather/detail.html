@@ -1,0 +1,16 @@
+{% if not error_message %}
+	<h1>{{ location_name }}</h1>
+	<h3>lat_lng: {{ lat_lng }}</h3>
+	<h3>Current Weather is {{ current_weather }}</h3>
+	<h3>Current Temperature: {{ current_temp }} 'C.</h3>
+	<h3>Current Humidity: {% widthratio current_humidity 1 100 %} %.</h3>
+	<a href="{% url 'weather:index' %}">Back to Search</a><br />
+	<img src="{{ photo_url }}">
+{% else %}
+	<h1>{{ error_message|linebreaks }}</h1>
+	<a href="{% url 'weather:index' %}">Back to Search</a><br />
+{% endif %}
+	<br />
+	---- {{ ll_runtime }} seconds ---- <br />
+	---- {{ fetch_runtime }} seconds ---- <br />
+	---- <b> {{ total_runtime }} seconds </b> ---- <br />

@@ -1,0 +1,11 @@
+<h1>Welcome to django-weather!</h1>
+<form id="searchForm" action="{% url 'weather:search' %}" method="get" accept-charset="utf-8">
+	<input class="searchField" id="name" name="name" type="text" placeholder="LA, Shanghai, 서울, ...">
+	<button class="searchButton" type="submit">Search</button>
+</form>
+<h3>Latest searches:</h3>
+<ul>
+{% for query in latest_queries %}
+	<li><a href="{% url 'weather:detail' query.query %}"><b>{{ query.query }}</b>	{{ query.formatted_name }}</a> ({{ query.search_time }})</li>
+{% endfor %}
+</ul>
